@@ -36,9 +36,11 @@ builder.Register(ctx =>
 var container = builder.Build();
 
 var mediator = container.Resolve<IMediator>();
+var state=await mediator.Send(new RequestState<PhoneState>("phone1"));
+Console.WriteLine(state);
 
 await mediator.Publish(new CallNumber("phone1","1234"));
-var state=await mediator.Send(new RequestState<PhoneState>("phone1"));
+state=await mediator.Send(new RequestState<PhoneState>("phone1"));
 
 Console.WriteLine(state);
 

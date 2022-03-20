@@ -14,7 +14,8 @@ public class PhoneCallStateMachine<T> :
     }
 
     protected override string CorrelateBy(T notification) => notification.PhoneId;
+    protected override string Mapper(PhoneState arg) => arg.AvailabilityState.ToString();
 
-    public PhoneCallStateMachine(IStoreEvents store) : base(store, new PhoneState(PhoneAvailabilityState.Free))
+    public PhoneCallStateMachine(IStoreEvents store) : base(store, new PhoneState(PhoneAvailabilityState.Free){Number = "s"})
     { }
 }
